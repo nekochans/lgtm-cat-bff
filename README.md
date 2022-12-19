@@ -1,9 +1,10 @@
 # lgtm-cat-bff
-[LGTMeow](https://lgtmeow.com) のBFF(Backend For Frontend)
+
+[LGTMeow](https://lgtmeow.com) の BFF(Backend For Frontend)
 
 # Getting Started
 
-## Packageのインストール
+## Package のインストール
 
 ```bash
 npm ci
@@ -11,7 +12,7 @@ npm ci
 
 ## ローカル環境の起動
 
-最初にwranglerを使って認証を行います。
+最初に wrangler を使って認証を行います。
 
 ```bash
 npm run login
