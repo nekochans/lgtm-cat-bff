@@ -1,3 +1,6 @@
 name = "lgtm-cat-bff"
 main = "src/index.ts"
 compatibility_date = "2022-12-15"
+
+[env.staging]
+name = "staging-lgtm-cat-bff"

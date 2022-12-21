@@ -27,7 +27,7 @@
   "private": true,
   "scripts": {
     "login": "wrangler login",
-    "start": "wrangler dev",
+    "start": "wrangler dev --env staging",
     "deploy": "wrangler publish",
     "lint:prettier": "prettier --check .",
     "fix:prettier": "npm run lint:prettier -- --write",
