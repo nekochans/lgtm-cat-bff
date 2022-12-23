@@ -1,6 +1,8 @@
 # lgtm-cat-bff
 
 [![ci](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/ci.yml/badge.svg)](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/ci.yml)
+[![deploy to staging](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/deploy-to-staging.yml/badge.svg)](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/deploy-to-staging.yml)
+[![deploy to production](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/deploy-to-production.yml/badge.svg)](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/deploy-to-production.yml)
 
 [LGTMeow](https://lgtmeow.com) の BFF(Backend For Frontend)
 
