@@ -77,7 +77,8 @@ export const issueAccessToken = async (
 
   if (isCognitoTokenResponseBody(responseBody)) {
     await dto.cacheClient.put(dto.cognitoClientId, responseBody.access_token, {
-      expirationTtl: 3600,
+      // トークンの有効期限が3600秒なのでそれよりも10分早い3000秒をcacheの有効期限とする
+      expirationTtl: 3000,
     });
 
     const issueAccessTokenResponse = {

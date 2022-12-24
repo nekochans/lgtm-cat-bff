@@ -1,6 +1,12 @@
 name = "lgtm-cat-bff"
 main = "src/index.ts"
 compatibility_date = "2022-12-15"
+kv_namespaces = [
+  { binding = "COGNITO_TOKEN", id = "79245f90d047421bb54d2d0cb0d4eeb5", preview_id = "09863c096f884e9d8009368614f9590b" }
+]
 
 [env.staging]
 name = "staging-lgtm-cat-bff"
+kv_namespaces = [
+  { binding = "COGNITO_TOKEN", id = "79245f90d047421bb54d2d0cb0d4eeb5", preview_id = "09863c096f884e9d8009368614f9590b" }
+]
