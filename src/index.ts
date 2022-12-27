@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { Bindings } from './bindings';
 import { handleFetchLgtmImagesInRandom } from './handlers/handleFetchLgtmImagesInRandom';
+import { handleNotFound } from './handlers/handleNotFound';
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -26,6 +27,10 @@ app.get('/lgtm-images', async (c) => {
       cacheClient: c.env.COGNITO_TOKEN,
     },
   });
+});
+
+app.all('*', (c) => {
+  return handleNotFound({ url: c.req.url });
 });
 
 export default app;
