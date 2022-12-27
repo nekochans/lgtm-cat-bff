@@ -6,4 +6,5 @@ export type Bindings = {
   IMAGE_RECOGNITION_API_URL: `https://${string}`;
   LGTMEOW_API_URL: `https://${string}`;
   COGNITO_TOKEN: KVNamespace;
+  SENTRY_DSN: `https://${string}@${string}.ingest.sentry.io/${string}`;
 };
