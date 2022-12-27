@@ -39,6 +39,7 @@
     "test": "jest --verbose"
   },
   "dependencies": {
+    "@honojs/sentry": "^0.0.5",
     "hono": "^2.6.2",
     "zod": "^3.20.2"
   }
