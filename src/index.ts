@@ -2,10 +2,16 @@ import { getSentry, sentry } from '@honojs/sentry';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import type { Bindings } from './bindings';
+import {
+  handleCatImageValidation,
+  validateHandleCatImageValidationRequestBody,
+} from './handlers/handleCatImageValidation';
 import { handleFetchLgtmImagesInRandom } from './handlers/handleFetchLgtmImagesInRandom';
 import { handleNotFound } from './handlers/handleNotFound';
 import type { ProblemDetails } from './handlers/handlerResponse';
+import { createValidationErrorResponse } from './handlers/handlerResponse';
 import { httpStatusCode } from './httpStatusCode';
+import { AcceptedTypesImageExtension } from './lgtmImage';
 
 const app = new Hono<{ Bindings: Bindings }>();
 
@@ -34,6 +40,29 @@ app.get('/lgtm-images', async (c) => {
       cacheClient: c.env.COGNITO_TOKEN,
     },
   });
+});
+
+app.post('/cat-images/validation-results', async (c) => {
+  const env = {
+    cognitoTokenEndpoint: c.env.COGNITO_TOKEN_ENDPOINT,
+    cognitoClientId: c.env.COGNITO_CLIENT_ID,
+    cognitoClientSecret: c.env.COGNITO_CLIENT_SECRET,
+    apiBaseUrl: c.env.IMAGE_RECOGNITION_API_URL,
+    cacheClient: c.env.COGNITO_TOKEN,
+  };
+
+  const requestBody = await c.req.json<{
+    image: string;
+    imageExtension: AcceptedTypesImageExtension;
+  }>();
+
+  const validationResult =
+    validateHandleCatImageValidationRequestBody(requestBody);
+  if (!validationResult.isValidate && validationResult.invalidParams != null) {
+    return createValidationErrorResponse(validationResult.invalidParams);
+  }
+
+  return await handleCatImageValidation({ env, requestBody });
 });
 
 app.onError((error, c) => {
