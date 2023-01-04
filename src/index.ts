@@ -7,6 +7,7 @@ import {
   validateHandleCatImageValidationRequestBody,
 } from './handlers/handleCatImageValidation';
 import { handleFetchLgtmImagesInRandom } from './handlers/handleFetchLgtmImagesInRandom';
+import { handleFetchLgtmImagesInRecentlyCreated } from './handlers/handleFetchLgtmImagesInRecentlyCreated';
 import { handleNotFound } from './handlers/handleNotFound';
 import type { ProblemDetails } from './handlers/handlerResponse';
 import { createValidationErrorResponse } from './handlers/handlerResponse';
@@ -32,6 +33,18 @@ app.use('*', async (c, next) => {
 
 app.get('/lgtm-images', async (c) => {
   return await handleFetchLgtmImagesInRandom({
+    env: {
+      cognitoTokenEndpoint: c.env.COGNITO_TOKEN_ENDPOINT,
+      cognitoClientId: c.env.COGNITO_CLIENT_ID,
+      cognitoClientSecret: c.env.COGNITO_CLIENT_SECRET,
+      apiBaseUrl: c.env.LGTMEOW_API_URL,
+      cacheClient: c.env.COGNITO_TOKEN,
+    },
+  });
+});
+
+app.get('/lgtm-images/recently-created', async (c) => {
+  return await handleFetchLgtmImagesInRecentlyCreated({
     env: {
       cognitoTokenEndpoint: c.env.COGNITO_TOKEN_ENDPOINT,
       cognitoClientId: c.env.COGNITO_CLIENT_ID,
