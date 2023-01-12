@@ -9,6 +9,10 @@ import {
 import { handleFetchLgtmImagesInRandom } from './handlers/handleFetchLgtmImagesInRandom';
 import { handleFetchLgtmImagesInRecentlyCreated } from './handlers/handleFetchLgtmImagesInRecentlyCreated';
 import { handleNotFound } from './handlers/handleNotFound';
+import {
+  handleUploadLgtmImage,
+  validateHandleUploadLgtmImageRequestBody,
+} from './handlers/handleUploadLgtmImage';
 import type { ProblemDetails } from './handlers/handlerResponse';
 import { createValidationErrorResponse } from './handlers/handlerResponse';
 import { httpStatusCode } from './httpStatusCode';
@@ -41,6 +45,29 @@ app.get('/lgtm-images', async (c) => {
       cacheClient: c.env.COGNITO_TOKEN,
     },
   });
+});
+
+app.post('/lgtm-images', async (c) => {
+  const env = {
+    cognitoTokenEndpoint: c.env.COGNITO_TOKEN_ENDPOINT,
+    cognitoClientId: c.env.COGNITO_CLIENT_ID,
+    cognitoClientSecret: c.env.COGNITO_CLIENT_SECRET,
+    apiBaseUrl: c.env.LGTMEOW_API_URL,
+    cacheClient: c.env.COGNITO_TOKEN,
+  };
+
+  const requestBody = await c.req.json<{
+    image: string;
+    imageExtension: AcceptedTypesImageExtension;
+  }>();
+
+  const validationResult =
+    validateHandleUploadLgtmImageRequestBody(requestBody);
+  if (!validationResult.isValidate && validationResult.invalidParams != null) {
+    return createValidationErrorResponse(validationResult.invalidParams);
+  }
+
+  return await handleUploadLgtmImage({ env, requestBody });
 });
 
 app.get('/lgtm-images/recently-created', async (c) => {
