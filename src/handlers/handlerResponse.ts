@@ -19,7 +19,7 @@ export const createSuccessResponse = (
 
 export type ProblemDetails = {
   title: string;
-  type: 'ResourceNotFound' | 'InternalServerError';
+  type: 'ResourceNotFound' | 'InternalServerError' | 'PayloadTooLarge';
   status?: HttpStatusCode;
   detail?: string;
 };
