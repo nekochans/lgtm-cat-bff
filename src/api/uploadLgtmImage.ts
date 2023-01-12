@@ -3,6 +3,7 @@ import { httpStatusCode } from '../httpStatusCode';
 import { createFailureResult, createSuccessResult, Result } from '../result';
 import { validation } from '../validator';
 import { UploadLgtmImageError } from './errors/UploadLgtmImageError';
+import { UploadLgtmImagePayloadTooLargeError } from './errors/UploadLgtmImagePayloadTooLargeError';
 import type { JwtAccessToken } from './issueAccessToken';
 import {
   LambdaRequestId,
@@ -64,6 +65,21 @@ export const uploadLgtmImage = async (
 
   if (response.status !== httpStatusCode.accepted) {
     const requestIds = mightExtractRequestIds(response);
+
+    if (response.status === httpStatusCode.payloadTooLarge) {
+      const failureResponse: FailureResponse = {
+        error: new UploadLgtmImagePayloadTooLargeError(
+          `X-Request-Id=${String(
+            requestIds.xRequestId
+          )}:X-Lambda-Request-Id:${String(requestIds.xLambdaRequestId)}`
+        ),
+      };
+
+      return createFailureResult<FailureResponse>({
+        ...failureResponse,
+        ...requestIds,
+      });
+    }
 
     throw new UploadLgtmImageError(
       `X-Request-Id=${String(
