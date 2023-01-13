@@ -9,6 +9,7 @@ export const httpStatusCode = {
   forbidden: 403,
   notFound: 404,
   requestTimeout: 408,
+  payloadTooLarge: 413,
   unprocessableEntity: 422,
   internalServerError: 500,
   serviceUnavailable: 503,
