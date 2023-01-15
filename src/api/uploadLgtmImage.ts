@@ -63,9 +63,6 @@ export const uploadLgtmImage = async (
 
   const response = await fetch(`${dto.apiBaseUrl}/lgtm-images`, options);
 
-  console.log(response.status);
-  console.log(`${dto.apiBaseUrl}/lgtm-images`);
-
   if (response.status !== httpStatusCode.accepted) {
     const requestIds = mightExtractRequestIds(response);
 

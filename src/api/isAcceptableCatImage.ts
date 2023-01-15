@@ -28,7 +28,7 @@ const isAcceptableCatImageNotAcceptableReasons = [
 ] as const;
 
 export type IsAcceptableCatImageNotAcceptableReason =
-  typeof isAcceptableCatImageNotAcceptableReasons[number];
+  (typeof isAcceptableCatImageNotAcceptableReasons)[number];
 
 export type IsAcceptableCatImageResponse = {
   isAcceptableCatImage: boolean;
