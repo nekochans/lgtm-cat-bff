@@ -3,6 +3,7 @@ import { InvalidParams } from '../validator';
 
 export type ResponseHeader = {
   'Content-Type': 'application/json';
+  'Access-Control-Allow-Origin': string;
   'X-Request-Id'?: string;
   'X-Lambda-Request-Id'?: string;
 };
@@ -10,7 +11,10 @@ export type ResponseHeader = {
 export const createSuccessResponse = (
   body: unknown,
   statusCode: HttpStatusCode = httpStatusCode.ok,
-  headers: ResponseHeader = { 'Content-Type': 'application/json' }
+  headers: ResponseHeader = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }
 ): Response => {
   const jsonBody = JSON.stringify(body);
 
@@ -34,12 +38,18 @@ export type ValidationProblemDetails = {
 export const createErrorResponse = (
   problemDetails: ProblemDetails,
   statusCode: HttpStatusCode = httpStatusCode.internalServerError,
-  headers: ResponseHeader = { 'Content-Type': 'application/json' }
+  headers: ResponseHeader = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }
 ): Response => createSuccessResponse(problemDetails, statusCode, headers);
 
 export const createValidationErrorResponse = (
   invalidParams: InvalidParams,
-  headers: ResponseHeader = { 'Content-Type': 'application/json' }
+  headers: ResponseHeader = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }
 ): Response => {
   const validationProblemDetails: ValidationProblemDetails = {
     title: 'unprocessable entity',
