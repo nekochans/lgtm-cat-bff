@@ -56,6 +56,7 @@ export const handleFetchLgtmImagesInRandom = async (
 
   const headers: ResponseHeader = {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   };
 
   if (fetchLgtmImagesResult.value.xRequestId != null) {

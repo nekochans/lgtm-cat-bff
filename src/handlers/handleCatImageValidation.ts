@@ -76,6 +76,7 @@ export const handleCatImageValidation = async (dto: Dto): Promise<Response> => {
 
   const headers: ResponseHeader = {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
   };
 
   if (isAcceptableCatImageResult.value.xRequestId != null) {
