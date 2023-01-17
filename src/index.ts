@@ -26,14 +26,7 @@ app.use('*', async (c, next) => {
   await handler(c, next);
 });
 
-app.use('*', async (c, next) => {
-  const handler =
-    c.env.APP_ENV === 'production'
-      ? cors({ origin: 'https://lgtmeow.com' })
-      : cors();
-
-  await handler(c, next);
-});
+app.use('*', cors());
 
 app.get('/lgtm-images', async (c) => {
   return await handleFetchLgtmImagesInRandom({
