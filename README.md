@@ -103,3 +103,17 @@ wrangler kv:namespace create --preview "COGNITO_TOKEN"
 より詳しくは以下の公式ドキュメントを参照。
 
 https://developers.cloudflare.com/workers/wrangler/commands/#kvnamespace
+
+## デプロイについて
+
+`main` ブランチにマージするとステージング環境にデプロイされます。
+
+以下でリリースページを作成すると本番環境にデプロイされます。
+
+https://github.com/nekochans/lgtm-cat-bff/releases
+
+何かあった際にロールバック出来るようにリリースページ作成時に `v1.0.2` のようなセマンティック・バージョニング形式のタグの追加を行います。
+
+ロールバックの際は [こちら](https://github.com/nekochans/lgtm-cat-bff/actions/workflows/deploy-to-production.yml) の workflow を `Run workflow` を用いて手動実行します。
+
+その際にロールバックしたいタグを指定します。
