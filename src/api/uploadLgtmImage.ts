@@ -1,18 +1,22 @@
 import { z } from 'zod';
 import { httpStatusCode } from '../httpStatusCode';
-import { createFailureResult, createSuccessResult, Result } from '../result';
+import {
+  createFailureResult,
+  createSuccessResult,
+  type Result,
+} from '../result';
 import { validation } from '../validator';
 import { UploadLgtmImageError } from './errors/UploadLgtmImageError';
 import { UploadLgtmImagePayloadTooLargeError } from './errors/UploadLgtmImagePayloadTooLargeError';
 import type { JwtAccessToken } from './issueAccessToken';
 import {
-  LambdaRequestId,
+  type LambdaRequestId,
   mightExtractRequestIds,
-  RequestId,
+  type RequestId,
 } from './mightExtractRequestIds';
 import {
   createValidationErrorResponse,
-  ValidationErrorResponse,
+  type ValidationErrorResponse,
 } from './validationErrorResponse';
 
 type Dto = {

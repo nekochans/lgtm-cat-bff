@@ -1,20 +1,24 @@
 import type { LgtmImage } from '../lgtmImage';
-import { createFailureResult, createSuccessResult, Result } from '../result';
+import {
+  createFailureResult,
+  createSuccessResult,
+  type Result,
+} from '../result';
 import { FetchLgtmImagesInRandomError } from './errors/FetchLgtmImagesInRandomError';
 import { FetchLgtmImagesInRecentlyCreated } from './errors/FetchLgtmImagesInRecentlyCreated';
 import {
   isFetchLgtmImagesResponseBody,
   validateFetchLgtmImagesResponseBody,
 } from './fetchLgtmImagesResponse';
-import { JwtAccessToken } from './issueAccessToken';
+import { type JwtAccessToken } from './issueAccessToken';
 import {
-  LambdaRequestId,
+  type LambdaRequestId,
   mightExtractRequestIds,
-  RequestId,
+  type RequestId,
 } from './mightExtractRequestIds';
 import {
   createValidationErrorResponse,
-  ValidationErrorResponse,
+  type ValidationErrorResponse,
 } from './validationErrorResponse';
 
 type Dto = {
