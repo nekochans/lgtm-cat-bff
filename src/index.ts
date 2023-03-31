@@ -1,5 +1,5 @@
 import { getSentry, sentry } from '@honojs/sentry';
-import { Hono } from 'hono';
+import { Hono, type MiddlewareHandler } from 'hono';
 import { cors } from 'hono/cors';
 import type { Bindings } from './bindings';
 import {
@@ -16,12 +16,12 @@ import {
 import type { ProblemDetails } from './handlers/handlerResponse';
 import { createValidationErrorResponse } from './handlers/handlerResponse';
 import { httpStatusCode } from './httpStatusCode';
-import { AcceptedTypesImageExtension } from './lgtmImage';
+import { type AcceptedTypesImageExtension } from './lgtmImage';
 
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.use('*', async (c, next) => {
-  const handler = sentry({ dsn: c.env.SENTRY_DSN });
+  const handler: MiddlewareHandler = sentry({ dsn: c.env.SENTRY_DSN });
 
   await handler(c, next);
 });
