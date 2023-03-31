@@ -1,4 +1,4 @@
-import { z, ZodError } from 'zod';
+import { type z, ZodError } from 'zod';
 
 type InvalidParam = {
   name: string;

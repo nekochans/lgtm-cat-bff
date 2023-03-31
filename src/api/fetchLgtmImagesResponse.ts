@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { validation, ValidationResult } from '../validator';
+import { validation, type ValidationResult } from '../validator';
 
 type FetchLgtmImagesResponseBody = {
   lgtmImages: Array<{

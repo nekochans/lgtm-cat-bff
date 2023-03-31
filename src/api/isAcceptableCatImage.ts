@@ -1,16 +1,20 @@
 import { z } from 'zod';
-import { createFailureResult, createSuccessResult, Result } from '../result';
+import {
+  createFailureResult,
+  createSuccessResult,
+  type Result,
+} from '../result';
 import { validation } from '../validator';
 import { IsAcceptableCatImageError } from './errors/IsAcceptableCatImageError';
 import type { JwtAccessToken } from './issueAccessToken';
 import {
-  LambdaRequestId,
+  type LambdaRequestId,
   mightExtractRequestIds,
-  RequestId,
+  type RequestId,
 } from './mightExtractRequestIds';
 import {
   createValidationErrorResponse,
-  ValidationErrorResponse,
+  type ValidationErrorResponse,
 } from './validationErrorResponse';
 
 type Dto = {

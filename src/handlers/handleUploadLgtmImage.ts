@@ -7,12 +7,12 @@ import { httpStatusCode } from '../httpStatusCode';
 import type { AcceptedTypesImageExtension } from '../lgtmImage';
 import { acceptedTypesImageExtensions } from '../lgtmImage';
 import { isFailureResult } from '../result';
-import { validation, ValidationResult } from '../validator';
+import { validation, type ValidationResult } from '../validator';
 import {
   createErrorResponse,
   createSuccessResponse,
   createValidationErrorResponse,
-  ResponseHeader,
+  type ResponseHeader,
 } from './handlerResponse';
 
 type Dto = {

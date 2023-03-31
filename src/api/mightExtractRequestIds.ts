@@ -1,4 +1,4 @@
-import { Response } from '@cloudflare/workers-types/2021-11-03/index';
+import { type Response } from '@cloudflare/workers-types/2021-11-03/index';
 
 export type RequestId = string;
 

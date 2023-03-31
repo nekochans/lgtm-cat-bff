@@ -1,10 +1,10 @@
-import { Response } from '@cloudflare/workers-types/2021-11-03/index';
+import { type Response } from '@cloudflare/workers-types/2021-11-03/index';
 import { z } from 'zod';
-import { InvalidParams, validation } from '../validator';
+import { type InvalidParams, validation } from '../validator';
 import {
-  LambdaRequestId,
+  type LambdaRequestId,
   mightExtractRequestIds,
-  RequestId,
+  type RequestId,
 } from './mightExtractRequestIds';
 
 export type ValidationErrorResponse = {

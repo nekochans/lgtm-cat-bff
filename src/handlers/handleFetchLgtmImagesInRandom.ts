@@ -8,7 +8,7 @@ import {
   createErrorResponse,
   createSuccessResponse,
   createValidationErrorResponse,
-  ResponseHeader,
+  type ResponseHeader,
 } from './handlerResponse';
 
 type Dto = {

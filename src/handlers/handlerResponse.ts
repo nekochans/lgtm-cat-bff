@@ -1,5 +1,5 @@
-import { HttpStatusCode, httpStatusCode } from '../httpStatusCode';
-import { InvalidParams } from '../validator';
+import { type HttpStatusCode, httpStatusCode } from '../httpStatusCode';
+import { type InvalidParams } from '../validator';
 
 export type ResponseHeader = {
   'Content-Type': 'application/json';

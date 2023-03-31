@@ -1,7 +1,11 @@
 import { z } from 'zod';
-import { createFailureResult, createSuccessResult, Result } from '../result';
+import {
+  createFailureResult,
+  createSuccessResult,
+  type Result,
+} from '../result';
 import { validation } from '../validator';
-import { CacheClient } from './cacheClient';
+import { type CacheClient } from './cacheClient';
 
 type Dto = {
   endpoint: string;
